@@ -1379,11 +1379,11 @@ function allDayLongMeeting(meetings, haveHours) {
   if (sortedMeetings.length === 1) return sortedMeetings;
 
   const recursive = function (idx, tmpS, tmpSol) {
-    
+
     let tempSum = tmpS;
     let tempSolution = [...tmpSol];
     let i = idx;
-    
+
     // Break condition
     if (!(sortedMeetings.length > idx)) {
       if (tempSum === maxHours) {
@@ -1392,24 +1392,22 @@ function allDayLongMeeting(meetings, haveHours) {
       }
       return;
     }
-    
+
     console.log(sortedMeetings[idx], idx, tmpS, tmpSol);
-    while (sortedMeetings.length > i) {      
+    while (sortedMeetings.length > i) {
       tempSum += sortedMeetings[i].hours;
       if (tempSum <= haveHours) {
         tempSolution.push(sortedMeetings[i]);
         if (tempSum > maxHours) {
           maxHours = tempSum;
-        } 
+        }
         recursive(i + 1, tempSum, tempSolution);
       } recursive(i + 1, tmpS, tmpSol)
       i += 1;
     }
   }
 
-  for (let i = 0; i < sortedMeetings.length; i++) {
-    recursive(i, 0, []);
-  }
+  recursive(0, 0, []);
 
   return solution;
 }
@@ -1421,3 +1419,61 @@ meetingOptimization([
   { name: 'Meeting2', hours: 2 },
   { name: 'Meeting2', hours: 2 }
 ], 8);
+
+// 69.
+// Print the sorted nth element from an unsorted list
+
+function printNthElement(inputArr, pos) {
+  const sortedArr = [...inputArr].sort((a, b) => a - b);
+  return pos < sortedArr.length ? sortedArr[pos - 1] : 'out of range';
+}
+
+// 70.
+// mostFrequentNumbers
+function mostFrequentNumbers(inputArr, k) {
+  const dict = new Map();
+
+  for (let i = 0; i < inputArr.length; i++) {
+    if (dict.has(inputArr[i] + '')) dict.set(inputArr[i] + '', dict.get(inputArr[i] + '') + 1);
+    else dict.set(inputArr[i], 0)
+  }
+
+  return [...dict].sort((a, b) => b[1] - a[1]).splice(0, k).map(ele => ele[0]);
+}
+
+// 71.
+// coin change -> return the amount of coins
+
+function coinChange(cents) {
+  // available coins 50, 10, 5, 1
+  // 87 = 25 * 3 + 10 * 1 + 5 * 0 + 1 * 2
+  let solution = 100;
+  const availableCoins = [25, 10, 5, 1];
+
+  const recursiveCount = function (idx, inputRest, inputSolution) {
+    let i = idx;
+    let tempRest = inputRest;
+    let tempSolution = inputSolution;
+
+    if (availableCoins.length === idx) return
+
+    while (tempRest / availableCoins[i] >= 1) {
+      tempSolution += 1;
+      tempRest -= availableCoins[i];
+
+      if (tempRest < availableCoins[i]) {
+        recursiveCount(i + 1, tempRest, tempSolution);
+      }
+
+      if (tempRest === 0 && tempSolution < solution) {
+        solution = tempSolution;
+      }
+
+    }
+    if (tempRest > 0) recursiveCount(i + 1, inputRest, inputSolution);
+  }
+
+  recursiveCount(0, cents, 0);
+
+  return solution;
+}
