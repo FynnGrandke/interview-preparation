@@ -749,8 +749,6 @@ const bitwiseSum = function (inputString1, inputString2) {
   let carry = 0;
   const input1 = [...inputString1].reverse();
   const input2 = [...inputString2].reverse();
-  console.log(input1, input2);
-
 
   let solution = input1.map((binary, index) => {
     console.log(binary, input2[index], index, carry);
@@ -960,9 +958,6 @@ const mostCommonLetter = function (inputString) {
   const dictMap = new Map(tempArr.map(letter => [letter, 0]));
   let mostCommon = '';
   let highestCounter = 0;
-
-  console.log(tempArr);
-
 
   tempArr.forEach(letter => {
     if (dictMap.has(letter)) {
@@ -1468,7 +1463,6 @@ function coinChange(cents) {
       if (tempRest === 0 && tempSolution < solution) {
         solution = tempSolution;
       }
-
     }
     if (tempRest > 0) recursiveCount(i + 1, inputRest, inputSolution);
   }
@@ -1477,3 +1471,571 @@ function coinChange(cents) {
 
   return solution;
 }
+
+// 72.
+// Matching pairs: Given a list of numbers, find the pair which sums up to a given value
+
+function matchingPairs(inputArr, inputSum) {
+  // To eleminate duplicates:
+  const tempArr = [...new Set(inputArr)];
+  const dict = new Set();
+  let solution = 'no solution';
+
+  for (let i = 0; i < tempArr.length; i++) {
+    if (dict.has(tempArr[i])) {
+      solution = `${tempArr[i]} and ${inputSum - tempArr[i]}`
+      break;
+    }
+    else dict.add(inputSum - tempArr[i]);
+  }
+
+  return solution;
+}
+
+// 73.
+// Consecutive counter: Find the longest sequence of a number in a given array.
+
+function consecutiveCounter(inputArr) {
+  const tempSortedArr = inputArr.sort((a, b) => a - b);
+  let conNum = tempSortedArr[0];
+  let counter = 1;
+  let max = 0;
+
+  for (let i = 1; i < tempSortedArr.length; i++) {
+    if (conNum + 1 === tempSortedArr[i]) {
+      counter += 1;
+      if (max < counter) {
+        max = counter;
+      }
+    } else {
+      counter = 0;
+    }
+    conNum = tempSortedArr[i];
+  }
+
+  return max;
+}
+
+// 74.
+// Shuffle a string
+
+function shuffleString(inputString) {
+  return [...inputString].sort(() => Math.round(Math.random() - 1));
+}
+
+// 75.
+// Recursive stairways problem: Return the number of possible ways of using the steps you can take from the step array
+
+function numWays(inputN, steps) {
+  if (inputN === 0) return 0;
+
+  let total = 0;
+
+  steps.forEach((step) => {
+    if (inputN - step >= 0) total += numWays(inputN - step, steps);
+  });
+
+  return total;
+}
+
+function numWays_bottomUp(inputN, steps) {
+  if (inputN === 0) return 1;
+
+  const nums = [1]
+
+  for (let i = 1; i <= inputN; i++) {
+    let total = 0;
+    steps.forEach((step) => {
+      if (i - step >= 0) total += nums[i - step];
+    });
+    nums[i] = total;
+  }
+
+  return nums[inputN];
+}
+
+// 76.
+// Given two arrays find the pair of number from each array which is the closes to the given number.
+
+function findClosesPair(inputArray1, inputArray2, targetNum) {
+  const dict = new Set(inputArray1);
+  let solution = [];
+  let highestDiff = targetNum;
+
+  inputArray2.forEach(num1 => {
+    if (dict.has(targetNum - num1)) {
+      if (highestDiff !== 0) solution = [];
+      solution.push();
+      highestDiff = 0;
+    } else if (highestDiff !== 0) {
+      [...dict.keys()].forEach(num2 => {
+        let tempHd = Math.abs(num1 + num2 - targetNum);
+        if (highestDiff > tempHd) {
+          highestDiff = tempHd;
+          solution = [];
+        }
+        if (highestDiff === tempHd) solution.push([num1, num2]);
+      });
+    }
+  });
+
+  return solution;
+}
+
+// second solution
+
+function findClosesPair2(inputArray1, inputArray2, targetNum) {
+  const dict = new Set(inputArray1);
+  let solution = [];
+  let x = 0;
+
+  while (true) {
+    inputArray2.forEach(num1 => {
+      if (dict.has((targetNum - x) - num1)) solution.push([num1, (targetNum - x) - num1]);
+      if (dict.has((targetNum + x) - num1)) solution.push([num1, (targetNum + x) - num1]);
+    });
+    if (solution.length !== 0) break;
+    x += 1;
+  }
+
+  return solution;
+}
+// findClosesPair2([-1,3,8,2,9,5], [4,1,2,10,5,20], 24);
+
+
+// 77.
+// Filter anagrams
+
+function aclean(arr) {
+  const dict = new Map();
+
+  arr.forEach(ele => {
+    dict.set([...ele.toLowerCase()].sort().join(''), ele);
+  });
+
+  return [...dict.values()];
+}
+// aclean(["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"]);
+
+// 78.
+// merge sort
+
+function mergeSort(arr) {
+  const rightPart = arr;
+
+  if (arr.length < 2) return arr;
+
+  return merge(mergeSort(rightPart.splice(0, Math.floor(arr.length / 2))), mergeSort(rightPart));
+}
+
+function merge(leftArr, rightArr) {
+  const tempArr = [];
+
+  while (leftArr.length && rightArr.length) {
+    if (leftArr[0] < rightArr[0]) tempArr.push(leftArr.shift());
+    else tempArr.push(rightArr.shift());
+  }
+
+  return [...tempArr, ...leftArr, ...rightArr];
+}
+
+// 79.
+// First non repeated character in a string
+
+function nonRepeat(inputString) {
+  const tempArr = [...inputString.toLowerCase()];
+  const dict = new Map();
+  let solution = '';
+
+  tempArr.forEach(char => {
+    if (dict.has(char)) dict.set(char, dict.get(char) + 1);
+    else dict.set(char, 1);
+  });
+
+  for (let [key, value] of dict.entries()) {
+    if (value === 1) {
+      solution = key
+      break;
+    }
+  }
+
+  return solution;
+}
+
+// 80.
+// Find the missing number
+
+function findMissing(inputArr) {
+  // const dict = new Set([...Array(100).keys()]);
+  const dict = new Set(inputArr);
+
+  for (let i = 0; i < 100; i++) {
+    if (!dict.has(i)) return i;
+  };
+}
+
+function findMissing2(inputArr) {
+  return 4950 - inputArr.reduce((acc, cur) => acc + cur, 0);
+}
+
+// 81.
+// binary search
+
+function binarySearch(inputArr, val) {
+  const tempArr = [...inputArr];
+  if (tempArr.length === 1) {
+    return tempArr[0] === val ? true : false;
+  }
+
+  const halfLen = Math.floor(tempArr.length / 2);
+  const leftPart = tempArr.splice(0, halfLen);
+
+  return inputArr[halfLen] > val ? binarySearch(leftPart, val) : binarySearch(tempArr, val);
+}
+
+// 82.
+// Remove duplicated characters from a string
+
+function removeDuplicates(inputString) {
+  return [...new Set(inputString.toLowerCase())].join('');
+}
+
+// 83.
+// Find longest substring without repeating characters
+// Example: abcabcd -> abcd, abdefgf -> abdefg, aaaa -> a, abcadcda -> abc, abcbbcabcd -> abcd
+
+function findSubString(inputString) {
+  let tempArr = [];
+  let solution = [];
+  const dict = new Set();
+
+  for (let i = 0; i < inputString.length; i++) {
+    let curr = inputString[i];
+    if (!dict.has(curr)) {
+      tempArr.push(curr);
+      if (tempArr.length > solution.length) solution = [...tempArr];
+      dict.add(curr);
+    } else {
+      tempArr.splice(tempArr.indexOf(curr) + 1).forEach(char => dict.delete(char));
+    }
+  }
+
+  return solution;
+}
+
+// 84. 
+// An array represents a number, write a function which adds 1 to it
+// Example: [1,7,3] + 1 => [1,7,4], [2,3,9] => [2,4,0], [9,9] => [1,0,0]
+
+function addOne(inputArr) {
+  return [...parseInt(inputArr.join('')) + 1 + ''].map(char => parseInt(char));
+}
+
+function addOne(inputArr) {
+  let solution = [];
+  const tempArr = [...inputArr].reverse();
+  let carry = 0;
+
+  solution = tempArr.reduce((acc, curr) => {
+    if (acc.length === 0) carry = 1;
+    if (curr < 9) {
+      acc.push(curr + carry);
+      carry = 0;
+      return acc;
+    } else {
+      acc.push(0);
+      carry = 1;
+      return acc;
+    }
+  }, [])
+
+  if (carry === 1) solution.push(1);
+
+  return solution.reverse();
+}
+
+// 85.
+// How many ways to decode. a = 1, b = 2, ..., z = 26;
+
+function decodeWays(inputNumber) {
+  if (!inputNumber) return 1;
+  let twoFlag = false;
+  return [...inputNumber + ''].reduce((acc, curr, currIdx, arr) => {
+    const num = parseInt(curr);
+    let tempRes = 0;
+    if (num === 1 && currIdx !== arr.length - 1) tempRes = 1;
+    if (twoFlag && num < 7) tempRes += 1;
+    if (num === 2) twoFlag = true;
+    else twoFlag = false;
+    if (num === 0) return acc + tempRes;
+    return acc + 1 + tempRes;
+  }, 0);
+}
+
+// 86.
+// Calculating the maximum distance of points to its source and return the two closes ones
+
+function closesPoints(inputArr) {
+  const dict = new Map();
+  const [result1, result2] = inputArr.map(subArr => {
+    const sum = Math.sqrt(Math.pow(subArr[0], 2) + Math.pow(subArr[1], 2));
+    if (dict.has(sum)) dict.set(sum, [...dict.get(sum), subArr]);
+    else dict.set(sum, [subArr]);
+    return sum;
+  }).sort((a, b) => a - b).splice(0, 2);
+
+  if (dict.get(result1).length > 1) return dict.get(result1).splice(0, 2);
+  else if (dict.get(result2).length > 1) return dict.get(result2).splice(0, 2);
+  else return [dict.get(result1), dict.get(result2)];
+}
+
+// 87.
+// Subarray with the highest sum
+let highestSum = 0;
+function longestSubarray(arr, start, end) {
+  if (end === arr.length) return;
+
+  if (start > end) return longestSubarray(arr, 0, end + 1);
+  else {
+    let tempSum = 0;
+    for (let i = start; i < end; i++) {
+      tempSum += arr[i];
+    }
+    if (tempSum > highestSum) highestSum = tempSum;
+    return longestSubarray(arr, start + 1, end);
+  }
+}
+longestSubarray([1,-3,2,1,-1], 0, 0);
+
+// 88.
+// Log all the subarrays of an array 
+
+function logSubarrays(arr, start, end) {
+  if (end === arr.length) return;
+  if (start > end) return logSubarrays(arr, 0, end + 1);
+  else {
+    let printArr = [];
+    for (let i = start; i <= end; i++) {
+      printArr.push(arr[i]);
+    }
+    console.log(printArr);
+    return logSubarrays(arr, start + 1, end);
+  }
+}
+logSubarrays([1, 2, 3, 4], 0, 0);
+
+// 89.
+// Simple async await promise
+
+function delay3Secs() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('...');
+    }, 3000);
+  });
+}
+
+async function waitForIt() {
+  let result = 'What is hiding in the dark?';
+  console.log(result);
+  result = await delay3Secs();
+  console.log(result);
+  delay3Secs().then((value) => {
+    setTimeout(() => {
+      console.log(`${value} 🤡 IT'S HIM!`);
+    }, 0);
+  });
+}
+
+// 90.
+// Object with private variable
+
+function obj(first, last) {
+  this.name = {
+    first,
+    last
+  }
+  this.money = 100;
+  
+  return {
+    getName: () => this.name.first + ' ' + this.name.last,
+    greet: () => `Hi, I'm ${this.name.first}!`,
+    incrementMoney: (amount) => this.money += amount,
+    getMoney: () => this.money
+  }
+}
+const myObj = new obj('Fynn', 'Grandke');
+const myObj2 = new obj('Marten', 'Meier');
+
+// 91.
+// Recursive approach for sub sequence
+
+function logSubSeq(inputString, length, index, currString) {
+  if (length === 0) return
+
+  console.log(currString);
+  
+  for (let i = index; i < length; i++) {
+    currString += inputString[i];
+    logSubSeq(inputString, length, i + 1, currString);
+    currString = currString.slice(0,-1);
+  }
+}
+function allSubs(inputString) {
+  logSubSeq(inputString, inputString.length, 0, '');
+}
+allSubs('abc');
+
+
+// 92.
+// Randomly reorder an integer array only with rand() and floor()
+
+function randomlyReorder(inputArray) {
+  return inputArray.sort((a, b) => Math.random() > 0.5 ? 1 : -1);
+}
+function randomlyReorderII(inputArray) {
+  for (let i = inputArray.length - 1; i >= 1; i--) {
+    let randPos = Math.floor((i + 1) * Math.random());
+    let temp = inputArray[i];
+    inputArray[i] = inputArray[randPos];
+    inputArray[randPos] = temp;
+  }
+  return inputArray;
+}
+
+// 93.
+// Longest consecutive character
+
+function longestConsec(inputString) {
+  let lastChar = null;
+  let maxChar = null;
+  let max = 0;
+  let currCounter = 0;
+
+  for (let i = 0; i < inputString.length; i++) {
+    if (inputString[i] === lastChar) {
+      currCounter += 1;
+      if (currCounter > max) {
+        max = currCounter;
+        maxChar = inputString[i]
+      }
+    } else {
+      currCounter = 1;
+      lastChar = inputString[i];
+    }
+  }
+
+  return {
+    [maxChar]: max
+  }
+}
+
+// 94.
+
+function isHoppable(towers) {
+  return hopp(towers, 0, towers[0])
+}
+
+function hopp(towers, pos, maxHoppDist) {
+  let nextHoppDist = 0;
+  let nextPos = 0;
+  
+  if (maxHoppDist + pos > towers.length) return true;
+  if (maxHoppDist === 0) return false;
+
+  for (let i = pos + 1; i <= pos + maxHoppDist; i++) {
+    if (towers[i] > nextHoppDist) {
+      nextHoppDist = towers[i];
+      nextPos = i;
+    }
+  }
+
+  return nextHoppDist === 0 ? false : hopp(towers, nextPos, nextHoppDist);
+}
+
+// 95.
+// Fibonacci - return the nth element of the fibonacci sequence
+
+function fibonacci(n) {
+  const seq = [1,1];
+  for (let i = 1; i < n - 1; i++) {
+    seq.push(seq[i-1] + seq[i-2]);
+  }
+  return seq[n-1];
+}
+
+// 96. 
+// Print all subsequences of this a string
+
+function logSubSeq(inputString, length, index, currString) {
+  if (length === 0) return
+
+  console.log(currString);
+  
+  for (let i = index; i < length; i++) {
+    currString += inputString[i];
+    logSubSeq(inputString, length, i + 1, currString);
+    currString = currString.slice(0,-1);
+  }
+}
+function allSubs(inputString) {
+  logSubSeq(inputString, inputString.length, 0, '');
+}
+allSubs('abc');
+
+// 97.
+
+function redundant(inputString) {
+  return function() {
+    return inputString;
+  }
+}
+redundant('apple');
+
+// 98.
+function sevenBoom(arr) {
+	return arr.find((num) => {
+        return [...(num + '')].find(char => char === '7');
+    }) ? "Boom!" : "there is no 7 in the array"
+}
+
+// 99.
+// Word chain everytime only add one letter OR change one letter
+
+function isWordChain(inputArr) {
+  if (inputArr.length < 2) return true; 
+  return helpFunc(inputArr, 0, inputArr[0]);
+}
+
+function helpFunc(baseArr, pos, prevWord) {
+  if (pos === baseArr.length - 1) return true;
+  let currWord = baseArr[pos + 1];
+  if (currWord.length === prevWord.length) {
+    let changedLetters = 0;
+
+    for (let i = 0; i < currWord.length; i++) {
+      if (currWord[i] !== prevWord[i]) {
+        changedLetters += 1;
+      }
+    }
+    
+    if (changedLetters === 1) return helpFunc(baseArr, pos + 1, currWord);
+  } else {
+    if (currWord.length === prevWord.length - 1 || currWord.length === prevWord.lenth + 1) return helpFunc(inputArr, pos + 1, currWord);
+  }
+  return false;
+}
+
+// 100.
+// Word buckets
+
+function bucketize(inputArray, size) {
+  return inputArray.split(' ').reduce((acc, curr, idx) => {
+    let temp = acc;
+    if (idx === 0) temp.push(curr);
+    else if (curr.length + 1 <= (size - temp[temp.length - 1].length)) temp[temp.length - 1] += ' ' + curr;
+    else temp.push(curr);
+    return temp;
+  }, []);
+}
+
