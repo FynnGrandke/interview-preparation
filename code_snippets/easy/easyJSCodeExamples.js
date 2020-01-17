@@ -338,3 +338,63 @@ const uniquator = function (inputArray) {
 function longestWord(sen) {
   return sen.replace(/[&!?.,]/g, '').split(' ').sort((a, b) => b.length - a.length)[0];
 }
+
+// 21.
+// What is a callback function?
+
+/* 
+  A callback function is a function that is passed to another function as an argument and 
+  is executed after some operation has been completed. 
+  Below is an example of a simple callback function that logs to the console after some operations have been completed.
+ */
+function modifyArray(arr, callback) {
+  // do something to arr here
+  arr.push(100);
+  // then execute the callback function that was passed
+  callback();
+}
+
+var arr = [1, 2, 3, 4, 5];
+
+modifyArray(arr, function () {
+  console.log("array has been modified", arr);
+});
+
+// 22.
+// Duplicate an array and append it
+
+const duplicate = function (inputArray) {
+  return [...inputArray, ...inputArray];
+}
+//  51. 
+// Reverse a word
+(function (inputString) {
+  return [...inputString].reverse().join('');
+})('Fynn');
+
+// 62.
+// Factorial 4 => 4 * 3 * 2 * 1 = 24
+
+function firstFactorial(num) {
+  return num === 1 ? 1 : num * firstFactorial(num - 1);
+}
+// 66.
+// Simple adding
+
+function simpleAdding(num) {
+  return num === 1 ? num : num + simpleAdding(num - 1);
+}
+// 69.
+// Print the sorted nth element from an unsorted list
+
+function printNthElement(inputArr, pos) {
+  const sortedArr = [...inputArr].sort((a, b) => a - b);
+  return pos < sortedArr.length ? sortedArr[pos - 1] : 'out of range';
+}
+
+// 82.
+// Remove duplicated characters from a string
+
+function removeDuplicates(inputString) {
+  return [...new Set(inputString.toLowerCase())].join('');
+}
