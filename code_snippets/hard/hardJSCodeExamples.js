@@ -876,3 +876,22 @@ function bucketize(inputArray, size) {
   }, []);
 }
 
+// 101
+// Return an array such that each element at index i of the new array is the product of the the numbers except the one at i.
+
+(function(inputArr) {
+  const product = inputArr.reduce((acc, curr) => acc * curr, 1);
+
+  return inputArr.reduce((acc, curr) => acc = [...acc, product / curr], []);
+})([3,2,1])
+
+(function(inputArr) {
+  return inputArr.map((ele, idx) => {
+    const temp = [...inputArr];
+    temp[idx] = 1;
+    // instead of setting it to 1 we could also use splice here
+    return temp.reduce((acc, curr) => {
+      return acc * curr;
+    }, 1);
+  })
+})([3,2,1])
