@@ -895,3 +895,14 @@ function bucketize(inputArray, size) {
     }, 1);
   })
 })([3,2,1])
+
+// 102
+// Explain the following 
+
+greet = "‮".toString.bind("hello world!")
+
+/* 
+greet = "...".toString.bind("hello world!")
+Where the ... in the string literal are the bytes E2 80 AE, which is the right-to-left override Unicode character, which causes everything after it to be displayed in reverse. 
+It's used for writing right-to-left languages like Arabic or Hebrew.
+*/
