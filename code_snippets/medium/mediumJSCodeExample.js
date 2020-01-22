@@ -782,3 +782,13 @@ function longestConsec(inputString) {
   }
 }
 
+// 94.
+// cons() constructs a pair and car() and cdr() return the first and last element.
+/* 
+  car(cons(3,4)) = 3
+  cdr(cons(3,4)) = 4
+*/
+
+const cons = (a, b) => [a, b];
+const car = ([x]) => x;
+const cdr = ([, ...xs]) => car(xs);
