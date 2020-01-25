@@ -9,32 +9,59 @@ interface CodeSettings {
 
 interface Tests {
   test: string[],
-  expect: string [],
+  expect: string[],
   errormsg: string
 }
 
+
+// 0.
+// easyCode.set(0,
+//   {
+//     task: 'Describtive text',
+//     tests: [
+//       {
+//         input: [],
+//         expect: [],
+//         errormsg: 'Describtive error message'
+//       }
+//     ],
+//     code: () => {},
+//     type: 'TYPE'
+//   }
+// );
+
 // 1.
-easyCode.set(0,
+easyCode.set(1,
   {
     task: 'Write code to convert an array of strings to an array of the lengths of those strings',
     tests: [
       {
-        test: ["this", "is", "an", "array"],
+        input: ["this", "is", "an", "array"],
         expect: [4, 2, 2, 5],
         errormsg: 'Values do not equal their respective length'
       }
     ],
     code: inputArr => inputArr.map(element => element.length),
-    type: 'array'
+    type: 'Array'
   }
 );
 
-// // 2.
-// /* Write code to sum an array of numbers */
-// const nums = [1, 2, 3, 4, 5];
-// const sum = nums.reduce((acc, currentValue) => acc + currentValue, 0);
+// 2.
+easyCode.set(2,
+  {
+    task: 'Write code to sum an array of numbers',
+    tests: [
+      {
+        input: [1, 2, 3, 4, 5],
+        expect: 15,
+        errormsg: 'Sum is not correct'
+      }
+    ],
+    code: numsArr => numsArr.reduce((acc, currentValue) => acc + currentValue, 0),
+    type: 'number'
+  }
+);
 
-// console.log(`The sum of the array is ${sum}`);
 
 // /* 
 //   Note: The arrow function is the so-called reducer function. 
@@ -53,14 +80,28 @@ easyCode.set(0,
 // /* 
 //   Write a function that can be called like so: 
 //   greeter("Hello")("Candidate");
-//   And will log "Hello, Candidate!" to the console.
+//   And will log  to the console.
 // */
 
-// function greeter(str) {
-//   return function who(str2) {
-//     return `${str}, ${str2}!`;
+
+// easyCode.set(3,
+//   {
+//     task: 'Describtive text',
+//     tests: [
+//       {
+//         input: [],
+//         expect: "Hello, Candidate!",
+//         errormsg: 'Describtive error message'
+//       }
+//     ],
+//     code: function greeter(str) {
+//       return function who(str2) {
+//         return `${str}, ${str2}!`;
+//       }
+//     },
+//     type: 'string'
 //   }
-// }
+// );
 
 // /* 
 //   Note:
@@ -102,6 +143,29 @@ easyCode.set(0,
 //   s = s.replace(/\W/g, '').toLowerCase()
 //   return [...s].toString() == [...s].reverse().toString()
 // }
+
+easyCode.set(5,
+  {
+    task: 'Write a function that returns whether or not a string is a palindrome. Less than 160 characters is preferred.',
+    tests: [
+      {
+        input: 'abccba',
+        expect: true,
+        errormsg: 'Input was a palindrome but got false as output'
+      },
+      {
+        input: 'abc',
+        expect: false,
+        errormsg: 'Input was not a palindrome but got true as output'
+      }
+    ],
+    code: s => {
+      s = s.replace(/\W/g, '').toLowerCase()
+      return [...s].toString() == [...s].reverse().toString()
+    },
+    type: 'boolean'
+  }
+);
 
 
 // // 6.
