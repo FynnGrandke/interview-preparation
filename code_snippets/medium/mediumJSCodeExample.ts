@@ -148,13 +148,13 @@ const leftCirc = function (inputArray, step) {
   return newArr;
 }
 
-function circularArrayRotation(arr, k) {
-  //Perform the operations k times
-  for (let i = 0; i < k; i++) {
-    arr.push(arr.shift());
-  }
-  return arr;
-}
+// function circularArrayRotation(arr, k) {
+//   //Perform the operations k times
+//   for (let i = 0; i < k; i++) {
+//     arr.push(arr.shift());
+//   }
+//   return arr;
+// }
 
 // 29.
 // Array right circulation
@@ -201,9 +201,7 @@ const sum = innerFunc();
 // Stack example
 
 class Stack {
-  constructor() {
-    this.items = [];
-  }
+  items = [];
 
   push = function (item) {
     return this.items.push(item);
@@ -319,9 +317,7 @@ const swapNum2 = function (a, b) {
 // 44.
 // Creating a Queue
 class Queue {
-  constructor() {
-    this.items = [];
-  }
+  items = [];
 
   enqueue = function (item) {
     this.items.unshift(item);
@@ -400,34 +396,34 @@ const balancedParenthesis = function (inputString) {
 // 49.
 // Most common letter in a string
 
-const mostCommonLetter = function (inputString) {
-  const tempArr = [...inputString.replace(new RegExp(' ', 'g'), '').toLowerCase()];
-  const dictMap = new Map(tempArr.map(letter => [letter, 0]));
-  let mostCommon = '';
-  let highestCounter = 0;
+// const mostCommonLetter = function (inputString) {
+//   const tempArr = [...inputString.replace(new RegExp(' ', 'g'), '').toLowerCase()];
+//   const dictMap = new Map(tempArr.map(letter => [letter, 0]));
+//   let mostCommon = '';
+//   let highestCounter = 0;
 
-  tempArr.forEach(letter => {
-    if (dictMap.has(letter)) {
-      dictMap.set(letter, dictMap.get(letter) + 1);
-      if (highestCounter < dictMap.get(letter)) {
-        highestCounter = dictMap.get(letter);
-        mostCommon = letter;
-      }
-    }
-  });
-  return mostCommon;
-}
+//   tempArr.forEach(letter => {
+//     if (dictMap.has(letter)) {
+//       dictMap.set(letter, dictMap.get(letter) + 1);
+//       if (highestCounter < dictMap.get(letter)) {
+//         highestCounter = dictMap.get(letter);
+//         mostCommon = letter;
+//       }
+//     }
+//   });
+//   return mostCommon;
+// }
 
-  // 50.
-  // Capitalize each first character in a string
+//   // 50.
+//   // Capitalize each first character in a string
 
-  (function (inputString) {
-    const tempArr = inputString.split(' ');
-    for (let i = 0; i < tempArr.length; i++) {
-      tempArr[i] = tempArr[i][0].toUpperCase() + tempArr[i].slice(1, tempArr[i].length);
-    }
-    return tempArr.join(' ');
-  })('Hello my name is Fynn');
+//   (function (inputString) {
+//     const tempArr = inputString.split(' ');
+//     for (let i = 0; i < tempArr.length; i++) {
+//       tempArr[i] = tempArr[i][0].toUpperCase() + tempArr[i].slice(1, tempArr[i].length);
+//     }
+//     return tempArr.join(' ');
+//   })('Hello my name is Fynn');
 
 
 // 52.
@@ -483,6 +479,7 @@ function KaprekarsConstant(num) {
   let solution = num;
 
   const helperFunc = (num) => {
+    // @ts-ignore TODO: Think about it later
     num = [...num + ''];
     while (num.length < 4) num.push('0');
     const tempNum1 = parseInt(num.sort().join(''));
@@ -534,6 +531,7 @@ function mostFrequentNumbers(inputArr, k) {
     else dict.set(inputArr[i], 0)
   }
 
+  // @ts-ignore TODO: Think about it later
   return [...dict].sort((a, b) => b[1] - a[1]).splice(0, k).map(ele => ele[0]);
 }
 
@@ -542,6 +540,7 @@ function mostFrequentNumbers(inputArr, k) {
 
 function matchingPairs(inputArr, inputSum) {
   // To eleminate duplicates:
+  // @ts-ignore TODO: Think about it later
   const tempArr = [...new Set(inputArr)];
   const dict = new Set();
   let solution = 'no solution';
@@ -598,6 +597,7 @@ function aclean(arr) {
     dict.set([...ele.toLowerCase()].sort().join(''), ele);
   });
 
+  // @ts-ignore TODO: Think about it later
   return [...dict.values()];
 }
 // aclean(["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"]);
@@ -615,6 +615,7 @@ function nonRepeat(inputString) {
     else dict.set(char, 1);
   });
 
+  // @ts-ignore TODO: Think about it later
   for (let [key, value] of dict.entries()) {
     if (value === 1) {
       solution = key
@@ -668,9 +669,9 @@ function findSubString(inputString) {
 // An array represents a number, write a function which adds 1 to it
 // Example: [1,7,3] + 1 => [1,7,4], [2,3,9] => [2,4,0], [9,9] => [1,0,0]
 
-function addOne(inputArr) {
-  return [...parseInt(inputArr.join('')) + 1 + ''].map(char => parseInt(char));
-}
+// function addOne(inputArr) {
+//   return [...parseInt(inputArr.join('')) + 1 + ''].map(char => parseInt(char));
+// }
 
 function addOne(inputArr) {
   let solution = [];
@@ -698,25 +699,25 @@ function addOne(inputArr) {
 // 89.
 // Simple async await promise
 
-function delay3Secs() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve('...');
-    }, 3000);
-  });
-}
+// function delay3Secs() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve('...');
+//     }, 3000);
+//   });
+// }
 
-async function waitForIt() {
-  let result = 'What is hiding in the dark?';
-  console.log(result);
-  result = await delay3Secs();
-  console.log(result);
-  delay3Secs().then((value) => {
-    setTimeout(() => {
-      console.log(`${value} 🤡 IT'S HIM!`);
-    }, 0);
-  });
-}
+// async function waitForIt() {
+//   let result = 'What is hiding in the dark?';
+//   console.log(result);
+//   result = await delay3Secs();
+//   console.log(result);
+//   delay3Secs().then((value) => {
+//     setTimeout(() => {
+//       console.log(`${value} 🤡 IT'S HIM!`);
+//     }, 0);
+//   });
+// }
 
 // 90.
 // Object with private variable
@@ -789,6 +790,6 @@ function longestConsec(inputString) {
   cdr(cons(3,4)) = 4
 */
 
-const cons = (a, b) => [a, b];
-const car = ([x]) => x;
-const cdr = ([, ...xs]) => car(xs);
+// const cons = (a, b) => [a, b];
+// const car = ([x]) => x;
+// const cdr = ([, ...xs]) => car(xs);
