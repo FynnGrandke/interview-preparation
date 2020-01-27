@@ -25,26 +25,26 @@ const fibfib = function (num) {
 // 12. 
 // Binary Search
 
-const arr = [1, 3, 5, 7, 8, 9];
-const binarySearch = function (arr, num) {
-  if (arr.length === 1 && arr[0] !== num) return 'not found';
-  const len = Math.floor(arr.length / 2);
-  const midEle = arr[len];
-  if (num < midEle) return binarySearch(arr.slice(0, len), num);
-  if (num > midEle) return binarySearch(arr.slice(len), num);
-  if (num === midEle) return 'found';
-}
+// const arr = [1, 3, 5, 7, 8, 9];
+// const binarySearch = function (arr, num) {
+//   if (arr.length === 1 && arr[0] !== num) return 'not found';
+//   const len = Math.floor(arr.length / 2);
+//   const midEle = arr[len];
+//   if (num < midEle) return binarySearch(arr.slice(0, len), num);
+//   if (num > midEle) return binarySearch(arr.slice(len), num);
+//   if (num === midEle) return 'found';
+// }
 
-const binarySearch = (inputArray, searchValue) => {
-  if (inputArray.length === 1 && inputArray[0] !== searchValue) return 'not found';
+// const binarySearch = (inputArray, searchValue) => {
+//   if (inputArray.length === 1 && inputArray[0] !== searchValue) return 'not found';
 
-  const halfLength = Math.floor(inputArray.length / 2);
-  const midEle = inputArray[halfLength];
+//   const halfLength = Math.floor(inputArray.length / 2);
+//   const midEle = inputArray[halfLength];
 
-  if (midEle > searchValue) return binarySearch(inputArray.slice(0, halfLength), searchValue);
-  if (midEle < searchValue) return binarySearch(inputArray.slice(halfLength, inputArray.length), searchValue);
-  if (midEle === searchValue) return 'found';
-}
+//   if (midEle > searchValue) return binarySearch(inputArray.slice(0, halfLength), searchValue);
+//   if (midEle < searchValue) return binarySearch(inputArray.slice(halfLength, inputArray.length), searchValue);
+//   if (midEle === searchValue) return 'found';
+// }
 
 
 // 16. 
@@ -735,8 +735,8 @@ function obj(first, last) {
     getMoney: () => this.money
   }
 }
-const myObj = new obj('Fynn', 'Grandke');
-const myObj2 = new obj('Marten', 'Meier');
+// const myObj = new obj('Fynn', 'Grandke');
+// const myObj2 = new obj('Marten', 'Meier');
 
 
 // 92.
