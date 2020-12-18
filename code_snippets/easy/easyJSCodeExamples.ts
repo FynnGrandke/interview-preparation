@@ -124,7 +124,7 @@ easyCode.set(2,
 
 // /* 
 //   Answer: a = undefined, b = number;
-//   Variable is undefined because it goes out of scope when the function completes.
+//   Variable a is undefined because it goes out of scope when the function completes.
 //   b is in the global scope because the keyword var only applies to a. 
 //   So, because of hoisting b will be declared in the global scope and thus be available to be logged.
 // */
