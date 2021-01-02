@@ -205,7 +205,7 @@ easyCode.set(5,
 // arr1 and arr2 are the same array. (['n','h','o','j',['j','o','n','e','s']])
 // Because:
 //   reverse doesnt only returns,
-//   it returns a a refernece as well,
+//   it returns a refernece as well,
 //   the array will be pushed as array (and not concatenate)
 // */
 
