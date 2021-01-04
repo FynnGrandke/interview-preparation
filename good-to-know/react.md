@@ -8,3 +8,6 @@ Reacts diffing algorithm to decide which node has to be updated in the virtual d
 
 The virtual DOM (VDOM) is an in-memory representation of the real DOM. The representation of an UI is kept in memory and synced with the “real” DOM. 
 
+## Shadow DOM
+
+The Shadow DOM is a browser technology designed primarily for scoping variables and CSS in web components. 
