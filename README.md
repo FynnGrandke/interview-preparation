@@ -5,5 +5,7 @@ Now it should serve others as a help to master their next coding interview!
 
 ## TODO
 ・Bring order to the code (right now it is hard to read)
+
 ・Add explanation to README 
+
 ・Rewrite test 
