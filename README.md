@@ -1,6 +1,9 @@
 # This Repo
-Just some code snippets I found and solved to prepare for a JS interview
+A year ago I was preparing for a JS coding interview.
+This repo is the collection I found and solved. 
+Now it should serve others as a help to master their next coding interview!
 
 ## TODO
-Need to bring order and sort everything in easy and hard stuff ...
-But currently don't have time for it..
+・Bring order to the code (right now it is hard to read)
+・Add explanation to README 
+・Rewrite test 
