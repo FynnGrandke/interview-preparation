@@ -1,36 +1,14 @@
 // 1.
-easyCode.set(1,
-  {
-    task: 'Write code to convert an array of strings to an array of the lengths of those strings',
-    tests: [
-      {
-        input: ["this", "is", "an", "array"],
-        expect: [4, 2, 2, 5],
-        errormsg: 'Values do not equal their respective length'
-      }
-    ],
-    code: inputArr => inputArr.map(element => element.length),
-    type: 'Array'
-  }
-);
+// Write code to convert an array of strings to an array of the lengths of those strings
+// input ["this", "is", "an", "array"]
+// expected output [4, 2, 2, 5]
+// solution inputArr => inputArr.map(element => element.length),
 
 // 2.
-easyCode.set(2,
-  {
-    task: 'Write code to sum an array of numbers',
-    tests: [
-      {
-        input: [1, 2, 3, 4, 5],
-        expect: 15,
-        errormsg: 'Sum is not correct'
-      }
-    ],
-    code: numsArr => numsArr.reduce((acc, currentValue) => acc + currentValue, 0),
-    type: 'number'
-  }
-);
-
-
+// Write code to sum an array of numbers
+// input [1, 2, 3, 4, 5]
+// expected output 15
+// numsArr => numsArr.reduce((acc, currentValue) => acc + currentValue, 0)
 // /* 
 //   Note: The arrow function is the so-called reducer function. 
 //   It is called for each element in the array. 
