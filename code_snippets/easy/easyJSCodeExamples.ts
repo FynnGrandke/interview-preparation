@@ -90,33 +90,22 @@
 //   return [...s].toString() == [...s].reverse().toString()
 // }
 
-easyCode.set(5,
-  {
-    task: 'Write a function that returns whether or not a string is a palindrome. Less than 160 characters is preferred.',
-    tests: [
-      {
-        input: 'abccba',
-        expect: true,
-        errormsg: 'Input was a palindrome but got false as output'
-      },
-      {
-        input: 'abc',
-        expect: false,
-        errormsg: 'Input was not a palindrome but got true as output'
-      }
-    ],
-    code: s => {
-      s = s.replace(/\W/g, '').toLowerCase()
-      return [...s].toString() == [...s].reverse().toString()
-    },
-    type: 'boolean'
-  }
-);
+// Write a function that returns whether or not a string is a palindrome. Less than 160 characters is preferred.',
+// 'abccba'
+// expected true,
+// 'abc',
+// expected false,
+// let solution = s => {
+//    s = s.replace(/\W/g, '').toLowerCase()
+//    return [...s].toString() == [...s].reverse().toString()
+// }
 
 
 // // 6.
 // /* 
 //   Write a sum method which will work properly with these syntaxes:
+// sum2(2, 3)
+// sum2(2)(3)
 // */
 
 // const sum2 = function (a, b?) {
