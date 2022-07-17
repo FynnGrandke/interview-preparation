@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+    "target": "ES2019",
     "module": "commonjs",
-    "sourceMap": true,
-    "outDir": "build"
+    "outDir": "dist"
   },
   "exclude": [
     "markdown/**/*",
     "node_modules"
   ],
   "include": [
+    "src/*",
     "tests",
     "writeJavascript.js"
   ]
