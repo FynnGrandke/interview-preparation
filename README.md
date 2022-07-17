@@ -41,10 +41,15 @@ function countVowels(inputString) {
 You can see that it starts with the task and an example of how the input and output should look like.\
 By clicking on "solution:" the dropdown will open and you can check for the code I wrote.
 
-##
+## Usage
 Click on these links to go to the .md files of the appropriate difficulty:
 * [Easy](markdown/easy/easy-js-questions.md)
 * [Medium](markdown/medium/medium-js-questions.md)
+
+You can write your code in the [src/index.ts](src/index.ts).\
+Don't forget to use start to start the tsc watcher by typing `npm run watch` into the console - This way your index.ts file will be automatically compiled to JavaScript code.\
+And also run the nodemon server in another console with `npm run server`, this way you can see your logs in realtime!\
+If you don't want to use these helpers, you can run `npm start` everytime you wrote new code to check the output in the console.
 
 ## Disclaimer
 I can not guarantee that the code is up-to-date, to modern industry standards, or in any other form perfect.\
