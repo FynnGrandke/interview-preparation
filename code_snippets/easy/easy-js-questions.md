@@ -58,6 +58,14 @@ function greeter(str) {
 }
 ```
 </details>
+<details>
+<summary>
+explanation:
+</summary>
+The used the so-called 'currying'. Currying is a function which is accepts fewer arguments than the total number of arguments.
+It is a higher order function, since it is implemented as a function returning another function.
+Currying is achieved by returning functions from functions.
+</details>
 </br>
 </li>
 
@@ -292,6 +300,13 @@ const hasWord = function (word) {
     return !!dict[code(word)];
 }
 ```
+or
+```
+const hasWord = function (word) {
+  return unsortedWords.includes(word);
+}
+hasWord(unsortedWords);
+```
 </details>
 </br>
 </li>
@@ -310,7 +325,7 @@ solution:
 <!--- collapsible text goes here -->
 
 ```
-const findWord2 = function (inputString) {
+const findWord = function (inputString) {
     const wordsCounter = {};
     let mostCommonCounter = 0;
     let mostCommonWord = '';
@@ -326,6 +341,29 @@ const findWord2 = function (inputString) {
         }
         return mostCommonWord;
     })
+}
+```
+or 
+```
+const findWord = function (str) {
+  const wordsArr = str.toLowerCase().split(' ');
+
+  const wordObj = wordsArr.reduce((acc, curr) =>
+    (acc.hasOwnProperty(curr) ? { ...acc, [curr]: acc[curr] + 1 } : { ...acc, [curr]: 1 }),
+    {}
+  );
+
+  let commWord = '';
+  let counter = 0;
+
+  for (const property in wordObj) {
+    if (wordObj[property] > counter) {
+      commWord = property;
+      counter = wordObj[property];
+    }
+  }
+
+  return commWord;
 }
 ```
 </details>
@@ -427,7 +465,7 @@ const longestWord = (inputString) => {
 ```
 or
 ```
-function longestWord(sen) {
+const lw = longestWord(sen) => {
     return sen.replace(/[&!?.,]/g, '').split(' ').sort((a, b) => b.length - a.length)[0];
 }
 ```
@@ -484,16 +522,113 @@ function removeDuplicates(inputString) {
 <li>
 
 <!--- question, input, output goes here; line-break is possible with '\' -->
-
+Explain what a callback function is.
 <details>
 <summary>
 <!--- collapsible text header goes here -->
+solution:
+</summary>
+<!--- collapsible text goes here -->
+A callback function is a function that is passed to another function as an argument and is executed after some operation has been completed. Below is an example of a simple callback function that logs to the console after some operations have been completed.
 
+```
+const modifyArray = (arr, callback) => {
+  // do something to arr here
+  arr.push(100);
+  // then execute the callback function that was passed
+  callback();
+}
+const arr = [1, 2, 3, 4, 5];
+
+modifyArray(arr, () => {
+  console.log("array has been modified", arr);
+});
+
+```
+</details>
+</br>
+</li>
+
+<li>
+
+<!--- question, input, output goes here; line-break is possible with '\' -->
+Duplicate an array and append it.
+<details>
+<summary>
+<!--- collapsible text header goes here -->
+solution:
 </summary>
 <!--- collapsible text goes here -->
 
 ```
+const duplicate = function (inputArray) {
+  return [...inputArray, ...inputArray];
+}
+duplicate([1,2,3]);
+```
+</details>
+</br>
+</li>
 
+<li>
+
+<!--- question, input, output goes here; line-break is possible with '\' -->
+Reverse a string.\
+Input: reverse('Fynn')\
+Output: 'nnyF'
+<details>
+<summary>
+<!--- collapsible text header goes here -->
+solution:
+</summary>
+<!--- collapsible text goes here -->
+
+```
+const reverse = (inputString) => {
+    return [...inputString].reverse().join('')
+}
+```
+</details>
+</br>
+</li>
+
+<li>
+
+<!--- question, input, output goes here; line-break is possible with '\' -->
+Write a factorial function:\
+A factorial is function which multiplies the values from N to 1 (4 => 4 * 3 * 2 * 1 = 24).
+<details>
+<summary>
+<!--- collapsible text header goes here -->
+solution:
+</summary>
+<!--- collapsible text goes here -->
+
+```
+const firstFactorial = (num) => {
+  return num === 1 ? 1 : num * firstFactorial(num - 1);
+}
+```
+</details>
+</br>
+</li>
+
+<li>
+
+<!--- question, input, output goes here; line-break is possible with '\' -->
+Print the sorted nth element from an unsorted list.
+<details>
+<summary>
+<!--- collapsible text header goes here -->
+solution:
+</summary>
+<!--- collapsible text goes here -->
+
+```
+const printNthElement = (inputArr, pos) => {
+  const sortedArr = [...inputArr].sort((a, b) => a - b);
+  return pos < sortedArr.length ? sortedArr[pos - 1] : 'out of range';
+}
 ```
 </details>
 </br>
