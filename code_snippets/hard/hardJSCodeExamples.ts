@@ -11,7 +11,7 @@ const promiseFunc1 = function (arrayOfFunctions) {
 }
 
 const loadScript = function (src) {
-  return new Promises(function (resolve, reject) {
+  return new Promise(function (resolve, reject) {
     let script = document.createElement('script');
     script.src = src;
 
