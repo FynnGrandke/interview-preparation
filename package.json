@@ -1,0 +1,39 @@
+{
+  "name": "interview-preparation",
+  "version": "0.0.1",
+  "description": "Selection of questions and code snippets",
+  "main": "./src/index.ts",
+  "scripts": {
+    "watch": "tsc --watch",
+    "server": "nodemon ./dist/index.js",
+    "start": "tsc && node ./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FynnGrandke/interview-preparation.git"
+  },
+  "keywords": [
+    "interview",
+    "preparation",
+    "coding",
+    "beginner",
+    "easy",
+    "medium",
+    "hard",
+    "questions",
+    "code",
+    "snippets"
+  ],
+  "author": "FynnGrandke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FynnGrandke/interview-preparation/issues"
+  },
+  "homepage": "https://github.com/FynnGrandke/interview-preparation#readme",
+  "dependencies": {
+    "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
