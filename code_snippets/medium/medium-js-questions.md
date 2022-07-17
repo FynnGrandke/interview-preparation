@@ -883,6 +883,25 @@ function shuffleString(inputString) {
 <li>
 
 <!--- question, input, output goes here; line-break is possible with '\' -->
+Write a function to check if two strings are anagrams of each other.
+<details>
+<summary>
+<!--- collapsible text header goes here -->
+solution:
+</summary>
+<!--- collapsible text goes here -->
+
+```
+const isAnagram = (inputString1, inputString2) => {
+  return [...inputString1.toLowerCase().replace(' ', '')].sort().join('').toString() === [...inputString2.toLowerCase().replace(' ', '')].sort().join('').toString();
+}
+```
+</details>
+</br>
+</li>
+<li>
+
+<!--- question, input, output goes here; line-break is possible with '\' -->
 Filter all strings which are anagrams.\
 input: `["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"]`\
 output: `['PAN', 'hectares', 'era']`
@@ -908,6 +927,7 @@ function aclean(arr) {
 </details>
 </br>
 </li>
+<li>
 
 <!--- question, input, output goes here; line-break is possible with '\' -->
 Return the first not repeated character in a string.\
@@ -945,6 +965,7 @@ function nonRepeat(inputString) {
 </details>
 </br>
 </li>
+<li>
 
 <!--- question, input, output goes here; line-break is possible with '\' -->
 Find the missing number in an array(100).\
@@ -974,6 +995,7 @@ function findMissing2(inputArr) {
 </details>
 </br>
 </li>
+<li>
 
 <!--- question, input, output goes here; line-break is possible with '\' -->
 Find longest substring without repeating characters.\
@@ -1009,6 +1031,7 @@ function findSubString(inputString) {
 </details>
 </br>
 </li>
+<li>
 
 <!--- question, input, output goes here; line-break is possible with '\' -->
 An array represents a number, write a function which adds 1 to it.\
@@ -1048,6 +1071,7 @@ function addOne(inputArr) {
 </details>
 </br>
 </li>
+<li>
 
 <!--- question, input, output goes here; line-break is possible with '\' -->
 Create an object with an first and last name and a private variable money which is incrementable.\
@@ -1077,6 +1101,7 @@ function obj(first, last) {
 </details>
 </br>
 </li>
+<li>
 
 <!--- question, input, output goes here; line-break is possible with '\' -->
 Randomly reorder an integer array only with rand() and floor().\
@@ -1109,6 +1134,7 @@ function randomlyReorderII(inputArray) {
 </details>
 </br>
 </li>
+<li>
 
 <!--- question, input, output goes here; line-break is possible with '\' -->
 Find the longest consecutive character in a string.\
@@ -1149,5 +1175,78 @@ function longestConsec(inputString) {
 </details>
 </br>
 </li>
+
+<li>
+
+<!--- question, input, output goes here; line-break is possible with '\' -->
+Write a function which resolves after 3 seconds.
+<details>
+<summary>
+<!--- collapsible text header goes here -->
+solution:
+</summary>
+<!--- collapsible text goes here -->
+
+```
+function delay3Secs() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('...');
+    }, 3000);
+  });
+}
+
+async function waitForIt() {
+  let result = 'What is hiding in the dark?';
+  console.log(result);
+  result = await delay3Secs();
+  console.log(result);
+  delay3Secs().then((value) => {
+    setTimeout(() => {
+      console.log(`${value} 🤡 IT'S HIM!`);
+    }, 0);
+  });
+}
+```
+</details>
+</br>
+</li>
+
+<li>
+
+<!--- question, input, output goes here; line-break is possible with '\' -->
+Write a function which resolves after 3 seconds.
+<details>
+<summary>
+<!--- collapsible text header goes here -->
+solution:
+</summary>
+<!--- collapsible text goes here -->
+
+```
+function delay3Secs() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('...');
+    }, 3000);
+  });
+}
+
+async function waitForIt() {
+  let result = 'What is hiding in the dark?';
+  console.log(result);
+  result = await delay3Secs();
+  console.log(result);
+  delay3Secs().then((value) => {
+    setTimeout(() => {
+      console.log(`${value} 🤡 IT'S HIM!`);
+    }, 0);
+  });
+}
+```
+</details>
+</br>
+</li>
+
 
 </ol>
